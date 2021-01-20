@@ -1,0 +1,22 @@
+{% extends "a2_base_template.html" %}
+
+{% block head %}
+    <style>
+        .main {
+            font-size: 30px;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<br/>
+<div class="main">
+    <h1>Results for: {{query}}</h1>
+    <br/>
+    {% for image in search %}
+    <img src="{{image}}" width="350" height="250" />
+    {% endfor %}
+</div>
+{% endblock %}

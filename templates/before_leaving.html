@@ -1,0 +1,66 @@
+{% extends 'a2_base_template.html' %}
+{% block activeBefore %} active {% endblock %}
+
+{% block head %}
+<style>
+    h1 {
+        font-size: 35px;
+        padding-top: 115px;
+        text-align: center;
+        color: white;
+        background-image: url(https://ak9.picdn.net/shutterstock/videos/1010280539/thumb/1.jpg);
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    h5 {
+        font-size: 25px;
+        padding: 10px;
+        text-align: center;
+        color: blue;
+    }
+
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1 class="head">Before leaving</h1>
+
+<h5>List of things to keep in mind before departing</h5 class="head">
+
+<p>
+    <img class="center" width="140" height=105
+        src="http://images.clipartpanda.com/list-clipart-making-a-list-clipart-1.jpg">
+
+    <ul>
+        <li> <u>Things to not forget to do</u>
+            <ul>
+                <li> Register for NZeta (New Zealand electronic travel authority)</li>
+                <li> Register for Australian Visa </li>
+                <li> Make sure vaccines are up to date </li>
+                <li> Register for airplane seating (day before departure) </li>
+                <li> Start budget planning </li>
+                <li> add other things to list</li>
+            </ul>
+        </li>
+        <hr>
+        <li> <u>Things to pack</u>
+            <ul>
+                <li> Passport </li>
+                <li> Australian/New Zealand dollars</li>
+                <li> Travel insurance papers </li>
+                <li> add list item </li>
+                <li> add list item </li>
+                <li> add list item </li>
+                <li> Etc.. </li>
+            </ul>
+        </li>
+    </ul>
+</p>
+{% endblock %}

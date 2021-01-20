@@ -1,0 +1,71 @@
+{% extends 'a2_base_template.html' %}
+{% block activeContact %} active {% endblock %}
+
+{% block head %}
+<style>
+  h1 {
+    font-size: 35px;
+    padding-top: 115px;
+    text-align: center;
+    color: white;
+  }
+
+  h1 {
+    background-image: url(https://ak9.picdn.net/shutterstock/videos/1010280539/thumb/1.jpg);
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  h5 {
+    font-size: 25px;
+    padding: 10px;
+    text-align: center;
+    color: blue;
+  }
+
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+<script>
+  function validateEmail(email) {
+    let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
+  function sendMail() {
+    let email = document.getElementById("email").value;
+    if (validateEmail(email)) {
+      window.open(`mailto:jasmine.lebel@live.com?subject=Trip Inquiry from ${email}&body=${document.getElementById("body").value}`);
+    } else {
+      alert("Not an email");
+    }
+  }
+</script>
+{% endblock %}
+
+{% block content %}
+<h1 class="head">For any comments / inquiries</h1>
+
+<div style="display: grid; align-items: center; justify-items: center; width: 100%; height: 50vh">
+  <form action="javascript:sendMail();" name="pmForm" id="pmForm" method="post">
+    {{ form.email.label }}:
+    <p>
+      {{ form.email(size=30)}}
+    </p>
+
+    {{ form.body.label }}:
+    <p>
+      {{ form.body(size=30)}}
+    </p>
+
+    <p style="text-align: center;">
+      {{ form.submit() }}
+    </p>
+  </form>
+</div>
+{% endblock %}

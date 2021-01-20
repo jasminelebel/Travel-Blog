@@ -1,0 +1,73 @@
+{% extends 'a2_base_template.html' %}
+
+{% block activeWeek1 %} active {% endblock %}
+{% block activePlansfor %} active {% endblock %}
+
+
+{% block head %}
+<style>
+    h1 {
+        font-size: 35px;
+        text-align: center;
+        color: white;
+        padding-top: 115px;
+    }
+
+    h5 {
+        font-size: 25px;
+        padding: 10px;
+        text-align: center;
+        color: {{trip.color}};
+    }
+
+    h1 {
+        background-image: url({{trip.background}});
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    p {
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Plan for Week {{week_number}}</h1>
+<h5>Destination: {{trip.destination}}</h5 class="head">
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Day</th>
+            <th scope="col">General plan</th>
+            <th scope="col">Daily expenses</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for date in trip['days'] %}
+        <tr>
+            <th scope="row">{{date['day']}}</th>
+            <td>{{date['plan']}}</td>
+            <td>{{date['expense']}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+<p>Expenses to keep in mind: car rental, gas, ferry fees, food, public transit, housing, general fees (hiking trails,
+    museums, parks, etc)... </p>
+
+<p>Planning inspo: <a href="{{trip.inspo_url}}">{{trip.inspo}}</a></p>
+
+<p><a href="{{trip.itinerary_url}}">{{trip.itinerary}}</a></p>
+
+<p>
+    {% for image in trip['images'] %}
+    <img width="300" height="200"
+        src="{{image}}">
+    {% endfor %}
+</p>
+{% endblock %}

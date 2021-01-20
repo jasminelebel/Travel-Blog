@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{% block title %}AU/NZ Trip Planner{% endblock %}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Shadows+Into+Light" />
+  <base href="">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: "Shadows Into Light"
+    }
+
+    nav {
+      background-color: lightskyblue;
+    }
+
+    div {
+      font-family: "Shadows Into Light"
+    }
+  </style>
+  <script>
+    function search() {
+      window.location = "/search/" + document.getElementById("searchinput").value;
+    }
+  </script>
+
+  {% block head %}{% endblock %}
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light-blue">
+    <a class="navbar-brand" href="/">AU / NZ 2K20</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item {% block activeHome %}{% endblock %}">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+
+        <li class="nav-item {% block activeBefore %}{% endblock %}">
+          <a class="nav-link" href="/before_leaving">Before leaving</a>
+        </li>
+
+        <li class="nav-item dropdown {% block activePlansfor %}{% endblock %}">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Plans for</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% for i in range(1, 5) %}
+            <a class="dropdown-item {% if week_number == i %}active{% endif %}" href="/week_{{i}}">Week {{i}}</a>
+            {% endfor %}
+          </div>
+        </li>
+
+        <li class="nav-item {% block activeContact %}{% endblock %}">
+          <a class="nav-link" href="/contact">Contact Me</a>
+        </li>
+
+        {% if username=="jasmine" %}
+        <li class="nav-item {% block activeAdmin %}{% endblock %}">
+          <a class="nav-link" href="/admin">Admin</a>
+        </li>
+        {% endif %}
+      </ul>
+
+      <form id="sarchform" class="search2" action="javascript:search()">
+        <input value="{{query}}" class="search2" id="searchinput" type="text" name="search" size="20" maxlength="255" />
+
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+
+      {% if username=="jasmine" %}
+      <a href="/logout"><button class="btn btn-outline-primary my-2 my-sm-0"
+          style="margin-left: 0.5em">Logout</button></a>
+      {% else %}
+      <a href="/login"><button class="btn btn-outline-primary my-2 my-sm-0"
+          style="margin-left: 0.5em">Login</button></a>
+      {% endif %}
+    </div>
+  </nav>
+
+  {% block content %}{% endblock %}
+</body>
+
+</html>

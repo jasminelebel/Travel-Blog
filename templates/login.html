@@ -1,0 +1,44 @@
+{% extends "a2_base_template.html" %}
+
+{% block head %}
+<script>
+    function login() {
+        if (validateEmail(document.getElementById('email').value)) {
+            document.getElementById("login-form").submit();
+        } else {
+            alert("Not an email");
+        }
+    }
+
+    function validateEmail(email) {
+        console.log(email);
+        let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<div style="display: grid; justify-content: center; align-items: center; width: 100%; height: 90vh">
+    <form id="login-form" action="" method="post">
+        <h2>Login</h2>
+        <p>
+            {{ form.email.label }} <br>
+            {{ form.email(size=30)}}
+
+        </p>
+
+        <p>
+            {{ form.password.label}} <br>
+            {{ form.password(size=30)}}
+
+        </p>
+        <p>
+            <button onclick="login()">Login</button>
+        </p>
+        <p style="text-align: center;">
+            <i>{{message}}</i>
+        </p>
+    </form>
+</div>
+{% endblock %}
